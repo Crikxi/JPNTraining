@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html>
+
+<head>
+<style>
+#char{
+    font-size: 20em;
+
+}
+main{
+    text-align:center;
+
+}
+</style>
+<script>
+currentChar = "";
+charList= [
+    {name: "a", char:"あ"},
+    {name: "i", char:"い"},
+    {name: "u", char:"う"},
+    {name: "e", char:"え"},
+    {name: "o", char:"お"},
+    {name: "ka", char:"か"},
+    {name: "ki", char:"き"},
+    {name: "ku", char:"く"},
+    {name: "ke", char:"け"},
+    {name: "ko", char:"こ"}
+];
+
+
+function randomChar(){
+    document.getElementById("respInput").value = "";
+    var i = Math.floor(Math.random()*charList.length);
+    currentChar = charList[i].name;
+    document.getElementById("char").innerText = charList[i].char;
+}
+
+function onSend(){
+    var resp = document.getElementById("respInput").value;
+    if(resp.toLowerCase() == currentChar){
+        document.getElementById("respDisplay").innerText = "WP";
+    }else{
+    
+        document.getElementById("respDisplay").innerText = "try again";
+    }
+
+}
+
+</script>
+</head>
+<body>
+    <main>
+       <div id="char"> </div>
+       
+       <input id="respInput" />
+       <button id="sendQu">Send</button>
+       <div id="respDisplay"></div>
+       <button id="newQu">New</button>
+    </main>
+<script>
+    document.getElementById("newQu").addEventListener("click", randomChar);
+    document.getElementById("sendQu").addEventListener("click", onSend);
+    randomChar();
+</script>
+</body>
