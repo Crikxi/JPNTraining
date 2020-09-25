@@ -1,0 +1,131 @@
+<!doctype html>
+
+<html>
+
+<head>
+ <meta charset="UTF-8">
+<style>
+    body{
+        text-align:center;
+    }
+    #main{
+        
+        display: flex;
+    }
+    #canvasDiv{
+    
+        width: 40vw;
+    }
+    canvas{
+        background: white;
+        border: 1px solid black;
+        width: 40vw;
+        min-height:60vh;
+    }
+    #charDiv{    
+        width: 40vw;
+        font-size: 20em;
+    }    
+</style>
+</head>
+<body>
+    <div id="main">
+        <div id="canvasDiv">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="charDiv">
+            あ
+        </div>
+    </div>
+    <button id="clearButton">Clear</button>
+    <button id="nextButton">Réponse</button>
+<script src="./charList.js"></script>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var mousePos = {x:0, y:0};
+    
+    
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    
+    ctx.lineWidth = canvas.width/300;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "black";
+    
+    
+    
+    function paint(x,y){
+        ctx.lineTo(x,y);
+        ctx.stroke();
+    
+    }
+    
+    function onMouseDown(ev){
+        ev.preventDefault();
+        
+        var x = ev.pageX || ev.touches[0].clientX
+        var y = ev.pageY || ev.touches[0].clientY
+        var canXRatio = canvas.width/canvas.clientWidth;
+        var canYRatio = canvas.height/canvas.clientHeight;
+        ctx.beginPath();
+        ctx.moveTo((x  - canvas.offsetLeft)* canXRatio, 
+                (y - canvas.offsetTop) * canYRatio);
+        canvas.addEventListener("mousemove", onMouseMove);
+        canvas.addEventListener("touchmove", onMouseMove);
+    }
+    
+    function onMouseMove(ev){
+        ev.preventDefault();
+        var x = ev.pageX || ev.touches[0].clientX
+        var y = ev.pageY || ev.touches[0].clientY
+        var canXRatio = canvas.width/canvas.clientWidth;
+        var canYRatio = canvas.height/canvas.clientHeight;
+        paint((x  - canvas.offsetLeft)* canXRatio,
+                (y - canvas.offsetTop) * canYRatio);
+    
+    }
+    function onMouseUp(ev){
+        canvas.removeEventListener("mousemove", onMouseMove);
+        canvas.removeEventListener("touchmove", onMouseMove);
+    }
+    
+    function clearCanvas(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    
+    canvas.addEventListener('mousedown', onMouseDown);
+    canvas.addEventListener('touchstart', onMouseDown);
+    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('touchend', onMouseUp);
+    document.getElementById("clearButton").addEventListener('click', clearCanvas);
+    
+
+</script>
+<script>
+    var responseMode = false;
+    var currentChar = "";
+    function randomChar(){
+        clearCanvas();
+        var i = Math.floor(Math.random()*charList.length);
+        currentChar = charList[i].char;
+        document.getElementById("charDiv").innerText = charList[i].name;
+    }
+    
+    function onNextButton(){
+        if(responseMode){
+            responseMode = false;
+            document.getElementById("nextButton").innerText = "Réponse";
+            randomChar();
+            return;
+        }
+        responseMode = true;
+        document.getElementById("charDiv").innerText = currentChar;
+        document.getElementById("nextButton").innerText = "Next";
+    }
+    
+    document.getElementById("nextButton").addEventListener("click", onNextButton);
+    randomChar();
+</script>
+</body>
