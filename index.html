@@ -29,17 +29,25 @@ charList= [
 ];
 
 
+function newQu(e){
+    e.preventDefault();
+    randomChar();
+}
+
 function randomChar(){
     document.getElementById("respInput").value = "";
     var i = Math.floor(Math.random()*charList.length);
     currentChar = charList[i].name;
     document.getElementById("char").innerText = charList[i].char;
+    document.getElementById("respDisplay").innerText="";
 }
 
-function onSend(){
+function onSend(e){
+    e.preventDefault();
     var resp = document.getElementById("respInput").value;
     if(resp.toLowerCase() == currentChar){
         document.getElementById("respDisplay").innerText = "WP";
+        setTimeout(function(){randomChar()},3000);
     }else{
     
         document.getElementById("respDisplay").innerText = "try again";
@@ -51,16 +59,18 @@ function onSend(){
 </head>
 <body>
     <main>
-       <div id="char"> </div>
-       
-       <input id="respInput" />
-       <button id="sendQu">Send</button>
-       <div id="respDisplay"></div>
-       <button id="newQu">New</button>
+        <form id="form">
+            <div id="char"> </div>
+           
+            <input id="respInput" />
+            <input type="submit" id="sendQu">
+            <div id="respDisplay"></div>
+            <button id="newQu">New</button>
+        </form>
     </main>
 <script>
-    document.getElementById("newQu").addEventListener("click", randomChar);
-    document.getElementById("sendQu").addEventListener("click", onSend);
+    document.getElementById("form").addEventListener("submit", onSend);
+    document.getElementById("newQu").addEventListener("click", newQu);
     randomChar();
 </script>
 </body>
