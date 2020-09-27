@@ -16,7 +16,7 @@ main{
 <script src="./charList.js" ></script>
 <script>
 var currentChar = "";
-
+var waitingForNextQu = false;
 
 
 function newQu(e){
@@ -26,18 +26,22 @@ function newQu(e){
 
 function randomChar(){
     document.getElementById("respInput").value = "";
-    var i = Math.floor(Math.random()*charList.length);
-    currentChar = charList[i].name;
-    document.getElementById("char").innerText = charList[i].char;
+    var ch = getRandomChar();
+    currentChar = ch.name;
+    document.getElementById("char").innerText = ch.char;
     document.getElementById("respDisplay").innerText="";
+    waitingForNextQu = false;
 }
 
 function onSend(e){
     e.preventDefault();
     var resp = document.getElementById("respInput").value;
     if(resp.toLowerCase() == currentChar){
-        document.getElementById("respDisplay").innerText = "WP";
-        setTimeout(function(){randomChar()},3000);
+        if(!waitingForNextQu){
+            waitingForNextQu = true;
+            document.getElementById("respDisplay").innerText = "WP";
+            setTimeout(function(){randomChar()},3000);
+        }
     }else{
     
         document.getElementById("respDisplay").innerText = "try again";
@@ -55,8 +59,10 @@ function onSend(e){
             <input id="respInput" />
             <input type="submit" id="sendQu">
             <div id="respDisplay"></div>
-            <button id="newQu">New</button>
         </form>
+        <div id="">
+            <button id="newQu">New</button>
+        </div>
     </main>
 <script>
     document.getElementById("form").addEventListener("submit", onSend);

@@ -25,7 +25,12 @@
     #charDiv{    
         width: 40vw;
         font-size: 20em;
-    }    
+    }
+    
+    img{
+        border: none;
+    
+    }
 </style>
 </head>
 <body>
@@ -106,11 +111,13 @@
 <script>
     var responseMode = false;
     var currentChar = "";
+    var charMode = "img";
+    
     function randomChar(){
         clearCanvas();
-        var i = Math.floor(Math.random()*charList.length);
-        currentChar = charList[i].char;
-        document.getElementById("charDiv").innerText = charList[i].name;
+        var ch = getRandomChar();
+        currentChar = ch.char;
+        document.getElementById("charDiv").innerText = ch.name;
     }
     
     function onNextButton(){
@@ -121,10 +128,27 @@
             return;
         }
         responseMode = true;
+        
         document.getElementById("charDiv").innerText = currentChar;
+        //document.getElementById("charDiv").innerHTML = "<img alt='" + currentChar + "' src='" + getImgLink(currentChar) + "'>";
+        charMode = "txt"
+        
         document.getElementById("nextButton").innerText = "Next";
     }
+    function changeCharMode(e){
+        if(responseMode && charMode == "img"){
+            e.preventDefault();
+            document.getElementById("charDiv").innerText = currentChar;
+            charMode = "txt";
+        }else if (responseMode && charMode == "txt"){        
+            e.preventDefault();
+            document.getElementById("charDiv").innerHTML = "<img alt='" + currentChar + "' src='" + getImgLink(currentChar) + "'>";
+            charMode = "img";
+        }
     
+    }
+    
+    document.getElementById("charDiv").addEventListener("click", changeCharMode)
     document.getElementById("nextButton").addEventListener("click", onNextButton);
     randomChar();
 </script>
