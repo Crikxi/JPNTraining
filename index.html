@@ -62,11 +62,13 @@ function onSend(e){
         </form>
         <div id="">
             <button id="newQu">New</button>
+            <button id="customInput">New</button>
         </div>
     </main>
 <script>
     document.getElementById("form").addEventListener("submit", onSend);
     document.getElementById("newQu").addEventListener("click", newQu);
+    document.getElementById("customInput").addEventListener("click", askForCustom);
     randomChar();
 </script>
 </body>
