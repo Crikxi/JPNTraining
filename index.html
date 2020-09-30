@@ -17,6 +17,7 @@ main{
 <script>
 var currentChar = "";
 var waitingForNextQu = false;
+var successiveErrorStreak = 0;
 
 
 function newQu(e){
@@ -26,11 +27,16 @@ function newQu(e){
 
 function randomChar(){
     document.getElementById("respInput").value = "";
-    var ch = getRandomChar();
+    document.getElementById("cheatButton").style.visibility = "hidden";
+    var ch = getRandomChar();    
     currentChar = ch.name;
     document.getElementById("char").innerText = ch.char;
     document.getElementById("respDisplay").innerText="";
     waitingForNextQu = false;
+}
+    
+function cheat(){
+    document.getElementById("respInput").value = currentChar;  
 }
 
 function onSend(e){
@@ -39,12 +45,16 @@ function onSend(e){
     if(resp.toLowerCase() == currentChar){
         if(!waitingForNextQu){
             waitingForNextQu = true;
+            successiveErrorStreak = 0;
             document.getElementById("respDisplay").innerText = "WP";
             setTimeout(function(){randomChar()},3000);
         }
     }else{
-    
+        successiveErrorStreak++;
         document.getElementById("respDisplay").innerText = "try again";
+        if(successiveErrorStreak > 3){
+            document.getElementById("cheatButton").style.visibility = "visible";
+        }
     }
 
 }
@@ -63,12 +73,14 @@ function onSend(e){
         <div id="">
             <button id="newQu">New</button>
             <button id="customInput">Custom</button>
+            <button id="cheatButton">Cheat</button>
         </div>
     </main>
 <script>
     document.getElementById("form").addEventListener("submit", onSend);
     document.getElementById("newQu").addEventListener("click", newQu);
     document.getElementById("customInput").addEventListener("click", askForCustom);
+    document.getElementById("cheatButton").addEventListener("click", cheat);
     randomChar();
 </script>
 </body>
