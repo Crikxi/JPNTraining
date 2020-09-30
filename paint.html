@@ -43,7 +43,8 @@
         </div>
     </div>
     <button id="clearButton">Clear</button>
-    <button id="nextButton">Réponse</button>
+    <button id="nextButton">Réponse</button> 
+    <button id="customInput">Custom</button>
 <script src="./charList.js"></script>
 <script>
     var canvas = document.getElementById("canvas");
@@ -149,7 +150,8 @@
     }
     
     document.getElementById("charDiv").addEventListener("click", changeCharMode)
-    document.getElementById("nextButton").addEventListener("click", onNextButton);
+    document.getElementById("nextButton").addEventListener("click", onNextButton); 
+    document.getElementById("customInput").addEventListener("click", askForCustom);
     randomChar();
 </script>
 </body>
