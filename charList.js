@@ -27,3 +27,7 @@ function getRandomChar(){
 function getImgLink(character){
     return "./img/Hiragana_" + character +"_stroke_order_animation.gif"
 }
+
+function askForCustom(){
+    charList = JSON.parse(prompt("Custom Json List"))    
+}
