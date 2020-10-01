@@ -8,7 +8,17 @@ var charList= [
     {name: "ki", char:"き"},
     {name: "ku", char:"く"},
     {name: "ke", char:"け"},
-    {name: "ko", char:"こ"}
+    {name: "ko", char:"こ"},
+    {name: "sa", char:"さ"},
+    {name: "shi", char:"し"},
+    {name: "su", char:"す"},
+    {name: "se", char:"せ"},
+    {name: "so", char:"そ"},
+    {name: "ta", char:"た"},
+    {name: "chi", char:"ち"},
+    {name: "tsu", char:"つ"},
+    {name: "te", char:"て"},
+    {name: "to", char:"と"}
 ];
 
 
