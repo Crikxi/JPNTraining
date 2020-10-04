@@ -5,11 +5,48 @@
 <head>
 <style>
 #char{
-    font-size: 20em;
+    font-size: 40vh;
 
 }
 main{
     text-align:center;
+
+}
+
+
+
+#quDiv{
+    display: flex;
+    height: 4vh;
+    margin-bottom: 2px;
+}
+
+#quDiv #respInput{
+    flex:3;
+    min-width: 0;
+}
+#quDiv #sendQu{
+    flex:1;
+}
+
+
+#buttonList{
+    display: flex;
+    background-color: #F0F0F0;
+    border: 1px solid black;
+
+}
+
+
+#buttonList button{
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+
+}
+button{
+    border: 0;
+    flex: 1;
+    min-height: 5vh;
 
 }
 </style>
@@ -18,6 +55,7 @@ main{
 var currentChar = "";
 var waitingForNextQu = false;
 var successiveErrorStreak = 0;
+var cheatEnable = false;
 
 
 function newQu(e){
@@ -27,7 +65,8 @@ function newQu(e){
 
 function randomChar(){
     document.getElementById("respInput").value = "";
-    document.getElementById("cheatButton").style.visibility = "hidden";
+    document.getElementById("cheatButton").disabled = true;
+    cheatEnable = false;
     var ch = getRandomChar();    
     currentChar = ch.name;
     document.getElementById("char").innerText = ch.char;
@@ -36,7 +75,8 @@ function randomChar(){
 }
     
 function cheat(){
-    document.getElementById("respInput").value = currentChar;  
+    if(cheatEnable)
+        document.getElementById("respInput").value = currentChar;  
 }
 
 function onSend(e){
@@ -53,7 +93,8 @@ function onSend(e){
         successiveErrorStreak++;
         document.getElementById("respDisplay").innerText = "try again";
         if(successiveErrorStreak > 3){
-            document.getElementById("cheatButton").style.visibility = "visible";
+            cheatEnable = true;
+            document.getElementById("cheatButton").disabled = false;
         }
     }
 
@@ -66,14 +107,16 @@ function onSend(e){
         <form id="form">
             <div id="char"> </div>
            
-            <input id="respInput" />
-            <input type="submit" id="sendQu">
+            <div id="quDiv">
+                <input id="respInput" />
+                <input type="submit" id="sendQu">
+            </div>
             <div id="respDisplay"></div>
         </form>
-        <div id="">
+        <div id="buttonList">
             <button id="newQu">New</button>
             <button id="customInput">Custom</button>
-            <button id="cheatButton">Cheat</button>
+            <button id="cheatButton" disabled>Cheat</button>
         </div>
     </main>
 <script>
