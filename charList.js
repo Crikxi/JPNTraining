@@ -18,7 +18,25 @@ var charList= [
     {name: "chi", char:"ち"},
     {name: "tsu", char:"つ"},
     {name: "te", char:"て"},
-    {name: "to", char:"と"}
+    {name: "to", char:"と"},
+    {name: "na", char:"な"},
+    {name: "ni", char:"に"},
+    {name: "nu", char:"ぬ"},
+    {name: "ne", char:"ね"},
+    {name: "no", char:"の"},
+    {name: "ha", char:"は"}, 
+    {name: "hi", char:"ひ"},
+    {name: "fu", char:"ふ"},
+    {name: "he", char:"へ"},
+    {name: "ho", char:"ほ"},
+    {name: "ma", char:"ま"},
+    {name: "mi", char:"み"},
+    {name: "mu", char:"む"},
+    {name: "me", char:"め"},
+    {name: "mo", char:"も"},
+    {name: "ya", char:"や"}, 
+    {name: "yu", char:"ゆ"},
+    {name: "yo", char:"よ"},
 ];
 
 
