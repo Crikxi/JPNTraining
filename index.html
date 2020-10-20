@@ -67,6 +67,7 @@ var currentChar = "";
 var waitingForNextQu = false;
 var successiveErrorStreak = 0;
 var cheatEnable = false;
+var waitingTime = 3000;
 
 
 function newQu(e){
@@ -98,7 +99,7 @@ function onSend(e){
             waitingForNextQu = true;
             successiveErrorStreak = 0;
             document.getElementById("respDisplay").innerText = "WP";
-            setTimeout(function(){randomChar()},3000);
+            setTimeout(function(){randomChar()}, waitingTime);
         }
     }else{
         successiveErrorStreak++;
