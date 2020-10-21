@@ -31,6 +31,25 @@
         border: none;
     
     }
+    #buttonList{
+         display: flex;
+         background-color: #F0F0F0;
+         border: 1px solid black;
+
+         max-width: 140vh;
+         margin: 0 auto;
+
+     }
+
+
+     #buttonList button{
+         border-left: 1px solid gray;
+         border-right: 1px solid gray;
+
+         font-size: 2vh;
+
+
+     }
 </style>
 </head>
 <body>
@@ -42,9 +61,11 @@
             あ
         </div>
     </div>
-    <button id="clearButton">Clear</button>
-    <button id="nextButton">Réponse</button> 
-    <button id="customInput">Custom</button>
+    <div class="buttonList">
+        <button id="clearButton">Clear</button>
+        <button id="nextButton">Réponse</button> 
+        <button id="customInput">Custom</button>
+    </div>
 <script src="./charList.js"></script>
 <script>
     var canvas = document.getElementById("canvas");
