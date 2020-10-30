@@ -35,8 +35,16 @@ var charList= [
     {name: "me", char:"め"},
     {name: "mo", char:"も"},
     {name: "ya", char:"や"}, 
-    {name: "yu", char:"ゆ"},
+    {name: "yu", char:"ゆ"}, 
     {name: "yo", char:"よ"},
+    {name: "ra", char:"ら"},
+    {name: "ri", char:"り"},
+    {name: "ru", char:"る"},
+    {name: "re", char:"れ"},
+    {name: "ro", char:"ろ"},
+    {name: "wa", char:"わ"},
+    {name: "wo", char:"を"},
+    {name: "n", char:"ん"},
 ];
 
 
