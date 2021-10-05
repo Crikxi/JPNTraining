@@ -65,6 +65,9 @@ function getImgLink(character){
 }
 
 function askForCustom(){
-    charList = JSON.parse(prompt("Custom Json List"));
-    remainingCharList = [];
+    let askList = JSON.parse(prompt("Custom Json List"));
+    if(askList){    
+      charList = askList;
+      remainingCharList = [];
+    }
 }
