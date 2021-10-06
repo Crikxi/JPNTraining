@@ -1,4 +1,4 @@
-var charList= [
+var charListKata= [
     {name: "a", char:"ア"},
     {name: "i", char:"イ"},
     {name: "u", char:"ウ"},
@@ -48,26 +48,3 @@ var charList= [
 ];
 
 
-/*
-Next code is for false random to stop getting the sames symbols
-*/
-var remainingCharList = [];
-function getRandomChar(){
-    if(remainingCharList.length == 0)
-        remainingCharList = charList.slice(0);//Copy charList
-    
-    var i = Math.floor(Math.random()*remainingCharList.length);
-    return remainingCharList.splice(i, 1)[0];
-}
-
-function getImgLink(character){
-    return "./img/Kakana_" + character +"_stroke_order_animation.gif"
-}
-
-function askForCustom(){
-    let askList = JSON.parse(prompt("Custom Json List"));
-    if(askList){    
-      charList = askList;
-      remainingCharList = [];
-    }
-}
