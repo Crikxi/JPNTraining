@@ -1,4 +1,4 @@
-var charList= [
+var charListHira = [
     {name: "a", char:"あ"},
     {name: "i", char:"い"},
     {name: "u", char:"う"},
@@ -47,10 +47,14 @@ var charList= [
     {name: "n", char:"ん"},
 ];
 
+var currentMode = "hira"; // can be hira or kata
+
+
 
 /*
 Next code is for false random to stop getting the sames symbols
 */
+var charList = charListHira;
 var remainingCharList = [];
 function getRandomChar(){
     if(remainingCharList.length == 0)
@@ -61,7 +65,13 @@ function getRandomChar(){
 }
 
 function getImgLink(character){
-    return "./img/Hiragana_" + character +"_stroke_order_animation.gif"
+    if(currentMode == "hira") {
+        return "./img/Hiragana_" + character +"_stroke_order_animation.gif"
+    } else if(currentMode == "kata") {
+        return "./img/Kakana_" + character +"_stroke_order_animation.gif"
+    } else {
+        return "";   
+    }
 }
 
 function askForCustom(){
