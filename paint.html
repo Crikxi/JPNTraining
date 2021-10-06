@@ -146,6 +146,9 @@
     }
     
     function onNextButton(ev){
+        if(ev.buttons == 0){
+          return;
+        }
         ev.preventDefault();
         if(responseMode){
             responseMode = false;
@@ -162,6 +165,9 @@
         document.getElementById("nextButton").innerText = "Next";
     }
     function changeCharMode(e){
+        if(ev.buttons == 0){
+          return;
+        }
         if(responseMode && charMode == "img"){
             e.preventDefault();
             document.getElementById("charDiv").innerText = currentChar;
