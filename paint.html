@@ -69,6 +69,10 @@
         <button id="nextButton">Réponse</button> 
         <button id="customInput">Custom</button>
     </div>
+    <select id="gameTypeSelect">
+        <option value="hira">Hiragana</option>
+        <option value="kata">Katakana</option>
+    </select>
 <script src="./charList.js"></script>
 <script>
     var canvas = document.getElementById("canvas");
@@ -179,10 +183,26 @@
         }
     
     }
+    function onChangeGameMode(ev) {
+        var select = document.getElementById("gameTypeSelect");
+        currentMode = select.value;
+        if(currentMode == "hira") {
+            charList = charListHira;
+        } else if(currentMode == "kata") {
+            charList = charListKata;
+        } else {
+            return "";   
+        }
+        remainingCharList = [];
+        randomChar();   
+        responseMode = false;
+        document.getElementById("nextButton").innerText = "Réponse";
+    }
     
     document.getElementById("charDiv").addEventListener("click", changeCharMode)
     document.getElementById("nextButton").addEventListener("click", onNextButton); 
     document.getElementById("customInput").addEventListener("click", askForCustom);
+    document.getElementById("gameTypeSelect").addEventListener("change", onChangeGameMode);
     randomChar();
 </script>
 </body>
