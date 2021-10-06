@@ -145,7 +145,8 @@
         document.getElementById("charDiv").innerText = ch.name;
     }
     
-    function onNextButton(){
+    function onNextButton(ev){
+        ev.preventDefault();
         if(responseMode){
             responseMode = false;
             document.getElementById("nextButton").innerText = "Réponse";
