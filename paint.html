@@ -146,7 +146,7 @@
     }
     
     function onNextButton(ev){
-        if(ev.buttons == 0){
+        if(ev.buttons !== 0){
           return;
         }
         ev.preventDefault();
@@ -165,7 +165,7 @@
         document.getElementById("nextButton").innerText = "Next";
     }
     function changeCharMode(e){
-        if(e.buttons == 0){
+        if(e.buttons !== 0){
           return;
         }
         if(responseMode && charMode == "img"){
