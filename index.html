@@ -42,7 +42,6 @@ main{
     
     max-width: 140vh;
     margin: 0 auto;
-
 }
 
 
@@ -62,6 +61,7 @@ button{
 }
 </style>
 <script src="./charList.js" ></script>
+<script src="./charListKatakana.js" ></script>
 <script>
 var currentChar = "";
 var waitingForNextQu = false;
@@ -109,8 +109,23 @@ function onSend(e){
             document.getElementById("cheatButton").disabled = false;
         }
     }
-
 }
+    
+function onChangeGameMode(ev) {
+    var select = document.getElementById("gameTypeSelect");
+    currentMode = select.value;
+    if(currentMode == "hira") {
+        charList = charListHira;
+    } else if(currentMode == "kata") {
+        charList = charListKata;
+    } else {
+        return "";   
+    }
+    var remainingCharList = [];
+    
+}
+    
+   
 
 </script>
 </head>
@@ -130,12 +145,17 @@ function onSend(e){
             <button id="customInput">Custom</button>
             <button id="cheatButton" disabled>Cheat</button>
         </div>
+        <select id="gameTypeSelect">
+            <option value="hira">Hiragana</option>
+            <option value="kata">Katakana</option>
+        </select>
     </main>
 <script>
     document.getElementById("form").addEventListener("submit", onSend);
     document.getElementById("newQu").addEventListener("click", newQu);
     document.getElementById("customInput").addEventListener("click", askForCustom);
     document.getElementById("cheatButton").addEventListener("click", cheat);
+    document.getElementById("gameTypeSelect").addEventListener("change", onChangeGameMode);
     randomChar();
 </script>
 </body>
