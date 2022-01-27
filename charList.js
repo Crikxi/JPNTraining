@@ -57,7 +57,7 @@ Next code is for false random to stop getting the sames symbols
 var charList = charListHira;
 var remainingCharList = [];
 function getRandomChar(){
-    if(remainingCharList.length == 0)
+    if(remainingCharList.length === 0)
         remainingCharList = charList.slice(0);//Copy charList
     
     var i = Math.floor(Math.random()*remainingCharList.length);
@@ -65,9 +65,9 @@ function getRandomChar(){
 }
 
 function getImgLink(character){
-    if(currentMode == "hira") {
+    if(currentMode === "hira") {
         return "./img/Hiragana_" + character +"_stroke_order_animation.gif"
-    } else if(currentMode == "kata") {
+    } else if(currentMode === "kata") {
         return "./img/Kakana_" + character +"_stroke_order_animation.gif"
     } else {
         return "";   
