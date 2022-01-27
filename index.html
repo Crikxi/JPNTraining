@@ -114,10 +114,12 @@ function onSend(e){
 function onChangeGameMode(ev) {
     var select = document.getElementById("gameTypeSelect");
     currentMode = select.value;
-    if(currentMode == "hira") {
+    if(currentMode === "hira") {
         charList = charListHira;
-    } else if(currentMode == "kata") {
+    } else if(currentMode === "kata") {
         charList = charListKata;
+    } else if(currentMode === "adjective") {
+        charList = listAdjective;
     } else {
         return "";   
     }
@@ -148,6 +150,7 @@ function onChangeGameMode(ev) {
         <select id="gameTypeSelect">
             <option value="hira">Hiragana</option>
             <option value="kata">Katakana</option>
+            <option value="adjective">Adjectifs</option>
         </select>
     </main>
 <script>
